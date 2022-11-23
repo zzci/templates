@@ -1,0 +1,8 @@
+site_name: Golang
+site_description: The Golang template.
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core
