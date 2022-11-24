@@ -11,6 +11,11 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
@@ -23,7 +28,6 @@ func main() {
 		})
 	})
 
-	if err := r.Run(":8080"); err != nil {
-		log.Fatal("Server forced to shutdown:", err)
-	}
+	log.Printf("Server listening on port %s", port)
+	log.Fatal(r.Run(":"+port, mux))
 }
